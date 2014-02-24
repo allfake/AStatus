@@ -1,0 +1,35 @@
+<div class="header">
+<!--   <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+    <li><a ng-href="#">About</a></li>
+    <li><a ng-href="#">Contact</a></li>
+  </ul> -->
+  <h3 class="text-muted">Anonymous status</h3>
+</div>
+
+<div class="body">
+  <div class="add-status-warapper">
+    <p>What do you thing now?</p>
+    <form>
+      <div class="input-group">
+        <!-- <div class="col-xs-4"> -->
+        <input type="text" class="form-control" id="new-text" placeholder="Rabye" ng-model="newStatus"></textarea>
+        <!-- </div> -->
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="addValue()">Send</button>
+        </span>
+      </div>
+    </form>
+  </div>
+  <div masonry="{'isFitWidth': true}">
+    <div class="masonry-brick w2" ng-repeat="statusItem in statusList | orderBy:'create_at'" >
+      <div class="item-wrapper">
+        <p class="item">{{statusItem.text}}</p>        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Allfake</p>
+</div>
