@@ -18,7 +18,7 @@ angular.module('astatusApp')
         return;
       }
       estimatedServerTimeMs = new Date().getTime() + offsetDate;
-      $scope.statusList.$add({text: $scope.newStatus, create_at: estimatedServerTimeMs});
+      $scope.statusList.$add({text: $scope.newStatus, create_at: new Date(estimatedServerTimeMs)});
       $scope.newStatus = "";
     }
   });
