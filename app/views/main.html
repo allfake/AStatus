@@ -22,7 +22,7 @@
     </form>
   </div>
   <div masonry="{'isFitWidth': true}">
-    <div class="masonry-brick w2" ng-repeat="statusItem in statusList | orderBy:'create_at'" >
+    <div class="masonry-brick w2" ng-repeat="statusItem in statusList | orderBy:'createAt':true" >
       <div class="item-wrapper">
         <p class="item">{{statusItem.text}}</p>        
       </div>
