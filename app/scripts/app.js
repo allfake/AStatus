@@ -5,6 +5,7 @@ angular.module('astatusApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'ngAnimate',
   'wu.masonry',
   'firebase'
 ])

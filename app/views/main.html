@@ -9,12 +9,10 @@
 
 <div class="body">
   <div class="add-status-warapper">
-    <p>What do you thing now?</p>
-    <form>
+    <p>What do you fedd now?</p>
+    <form ng-submit="addValue()">
       <div class="input-group">
-        <!-- <div class="col-xs-4"> -->
-        <input type="text" class="form-control" id="new-text" placeholder="Rabye" ng-model="newStatus"></textarea>
-        <!-- </div> -->
+        <input type="text" class="form-control" id="new-text" placeholder="release" ng-model="newStatus" ng-maxlength="140" required></input>
         <span class="input-group-btn">
           <button type="button" class="btn btn-default" ng-click="addValue()">Send</button>
         </span>
@@ -31,5 +29,9 @@
 </div>
 
 <div class="footer">
-  <p>Allfake</p>
+  <div class="slide-wrapper">
+    <div ng-repeat="slide in slideText">
+      <div slide-text a-text="slide.text"></div>
+    </div>
+  </div>
 </div>
