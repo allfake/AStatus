@@ -15,6 +15,10 @@ angular.module('astatusApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/water', {
+        templateUrl: 'views/water.html',
+        controller: 'WaterCtrl'
+      })      
       .otherwise({
         redirectTo: '/'
       });

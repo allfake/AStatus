@@ -19,20 +19,21 @@ angular.module('astatusApp')
       offsetDate = snap.val();
     });
 
-    statusList.on("child_added", function (snap) {
-      $timeout(function () {
-        $scope.statusList.unshift(snap.val());
-        if (loadFinish) {
-          $scope.slideText.push({ text: snap.val().text });
-        }
-      });
-    })
+    statusList.on("value", function (snap) {
+      if (!loadFinish) {
+        _.each(snap.val(), function (val) {
+          $scope.statusList.unshift(val);
+        });
+        loadFinish = true;
+      }
+    });
 
-    $scope.textEnter = function (e) {
-     if (e.keyCode == 13) {
-        console.log(1111)
-      } 
-    };
+    statusList.on("child_added", function (snap) {
+      if (loadFinish) {
+        $scope.statusList.unshift(snap.val());
+        $scope.slideText.push({ text: snap.val().text });
+      }
+    })
 
     $scope.addValue = function () {
       if (!$scope.newStatus || $scope.newStatus == "" || !offsetDate) {

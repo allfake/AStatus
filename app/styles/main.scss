@@ -104,11 +104,15 @@ body {
     top: 0px;
     color: white;
     text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);    
-    -webkit-transition: 15s cubic-bezier(.21,.74,.98,.46) left;
-    -moz-transition: 15s cubic-bezier(.21,.74,.98,.46) left;
-    -ms-transition: 15s cubic-bezier(.21,.74,.98,.46) left;
-    -o-transition: 15s cubic-bezier(.21,.74,.98,.46) left;
-    transition: 15s cubic-bezier(.21,.74,.98,.46) left;
+    -webkit-transition: 15s cubic-bezier(.21,.74,.98,.46) left, 30s opacity;
+    -moz-transition: 15s cubic-bezier(.21,.74,.98,.46) left, 30s opacity;
+    -ms-transition: 15s cubic-bezier(.21,.74,.98,.46) left, 30s opacity;
+    -o-transition: 15s cubic-bezier(.21,.74,.98,.46) left, 30s opacity;
+    transition: 15s cubic-bezier(.21,.74,.98,.46) left, 30s opacity;
+}
+
+.slide-text.slde-left p {
+    opacity: 0;
 }
 
 .slide-text-enter {
