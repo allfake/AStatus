@@ -14,7 +14,7 @@ angular.module('astatusApp')
         var text = $(element).find('.slide-text p');
         $timeout(function() {
           scope.positionClass = 'slide-left';
-          scope.positionTop = {top: positionTop + 'px', left: -text.width() + 'px' , opacity: 0};
+          scope.positionTop = {top: positionTop + 'px', left: -text.width() + 'px'};
         });
       }
     };

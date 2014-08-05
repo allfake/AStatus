@@ -1,19 +1,27 @@
 'use strict';
 
 angular.module('astatusApp')
-  .controller('MainCtrl', function ($scope, $firebase, $timeout) {
+  .controller('MainCtrl', function ($scope, $firebase, $timeout, $location, $rootScope, PubNub) {
 
-    var serverTimeOffset = new Firebase("https://vivid-fire-1812.firebaseio.com/.info/serverTimeOffset");
-    var statusList = new Firebase("https://vivid-fire-1812.firebaseio.com/").endAt().limit(400);
+    var serverTimeOffset = new Firebase("https://radiant-fire-8395.firebaseio.com/.info/serverTimeOffset");
+    var statusList = new Firebase("https://radiant-fire-8395.firebaseio.com/").endAt().limit(20);
     var offsetDate;
     var estimatedServerTimeMs;
     var loadFinish = false;
-
-    setTimeout(function() {loadFinish = true}, 4000);
+    var theChannel = 'demo';
 
     $scope.statusListFirebase = $firebase(statusList);
     $scope.statusList = [];
     $scope.slideText = [];
+
+    if (!$rootScope.initialized) {
+      // Initialize the PubNub service
+      PubNub.init({
+        subscribe_key: 'demo',
+        publish_key: 'demo',
+      });
+      $rootScope.initialized = true;
+    }
 
     serverTimeOffset.on("value", function(snap) {
       offsetDate = snap.val();
@@ -21,14 +29,20 @@ angular.module('astatusApp')
 
     statusList.on("value", function (snap) {
       if (!loadFinish) {
+        $scope.statusList = [];
         _.each(snap.val(), function (val) {
           $scope.statusList.unshift(val);
         });
-        loadFinish = true;
+
+        if (snap.numChildren() >= $scope.statusList.length) {
+          $timeout(function () {
+            loadFinish = true;
+          }, 100);
+        }
       }
     });
 
-    statusList.on("child_added", function (snap) {
+    statusList.on("child_added", function (snap) {      
       if (loadFinish) {
         $scope.statusList.unshift(snap.val());
         $scope.slideText.push({ text: snap.val().text });
@@ -40,9 +54,18 @@ angular.module('astatusApp')
         return;
       }
 
+      PubNub.ngPublish({
+        channel: theChannel,
+        message: {"text": $scope.newStatus, "from": "astatus"}
+      });
+
       estimatedServerTimeMs = new Date().getTime() + offsetDate;
 
       $scope.statusListFirebase.$add({text: $scope.newStatus, createAt: new Date(estimatedServerTimeMs)});
       $scope.newStatus = "";
+    }
+
+    $scope.changeView = function () {
+      $scope.$apply( $location.path( 'water' ) );
     }
   });
