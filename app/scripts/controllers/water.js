@@ -8,9 +8,19 @@ angular.module('astatusApp')
     var offsetDate;
     var estimatedServerTimeMs;
     var loadFinish = false;
+    var theChannel = 'demo';
 
     $scope.statusListFirebase = $firebase(statusList);
     $scope.slideText = [];
+
+    if (!$rootScope.initialized) {
+      // Initialize the PubNub service
+      PubNub.init({
+        subscribe_key: 'demo',
+        publish_key: 'demo',
+      });
+      $rootScope.initialized = true;
+    }
 
     serverTimeOffset.on("value", function(snap) {
       offsetDate = snap.val();
@@ -34,6 +44,11 @@ angular.module('astatusApp')
       if (!$scope.newStatus || $scope.newStatus == "" || !offsetDate) {
         return;
       }
+
+      PubNub.ngPublish({
+        channel: theChannel,
+        message: {"text": $scope.newStatus, "from": "astatus"}
+      });
 
       estimatedServerTimeMs = new Date().getTime() + offsetDate;
 
