@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('astatusApp')
-  .controller('WaterCtrl', function ($scope, $timeout, $firebase, $location) {
+  .controller('WaterCtrl', function ($scope, $timeout, $firebase, $location, $rootScope, PubNub) {
 
     var serverTimeOffset = new Firebase("https://vivid-fire-1812.firebaseio.com/.info/serverTimeOffset");
     var statusList = new Firebase("https://vivid-fire-1812.firebaseio.com/").endAt().limit(400);
     var offsetDate;
     var estimatedServerTimeMs;
     var loadFinish = false;
-    var theChannel = 'demo';
+    var theChannel = 'astatus';
 
     $scope.statusListFirebase = $firebase(statusList);
     $scope.slideText = [];

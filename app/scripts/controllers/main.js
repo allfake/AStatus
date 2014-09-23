@@ -8,7 +8,11 @@ angular.module('astatusApp')
     var offsetDate;
     var estimatedServerTimeMs;
     var loadFinish = false;
-    var theChannel = 'demo';
+    var theChannel = 'astatus';
+
+    $scope.radioTextSizeModel = 'M';
+    $scope.radioTextAlignModel = 'L';
+
 
     $scope.statusListFirebase = $firebase(statusList);
     $scope.statusList = [];
@@ -56,7 +60,7 @@ angular.module('astatusApp')
 
       PubNub.ngPublish({
         channel: theChannel,
-        message: {"text": $scope.newStatus, "from": "astatus"}
+        message: {"text": $scope.radioTextSizeModel + $scope.radioTextAlignModel + $scope.newStatus, "from": "astatus"}
       });
 
       estimatedServerTimeMs = new Date().getTime() + offsetDate;

@@ -8,7 +8,8 @@ angular.module('astatusApp', [
   'ngAnimate',
   'wu.masonry',
   'firebase',
-  'pubnub.angular.service'
+  'pubnub.angular.service',
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider) {
     $routeProvider
