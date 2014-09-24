@@ -9,7 +9,8 @@ angular.module('astatusApp', [
   'wu.masonry',
   'firebase',
   'pubnub.angular.service',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ngColorPicker'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -20,7 +21,11 @@ angular.module('astatusApp', [
       .when('/water', {
         templateUrl: 'views/water.html',
         controller: 'WaterCtrl'
-      })      
+      })
+      .when('/lightme', {
+        templateUrl: 'views/lightme.html',
+        controller: 'LightmeCtrl'
+      }) 
       .otherwise({
         redirectTo: '/'
       });

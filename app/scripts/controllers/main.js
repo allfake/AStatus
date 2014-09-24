@@ -10,9 +10,8 @@ angular.module('astatusApp')
     var loadFinish = false;
     var theChannel = 'astatus';
 
-    $scope.radioTextSizeModel = 'M';
+    $scope.radioTextSizeModel = 'L';
     $scope.radioTextAlignModel = 'L';
-
 
     $scope.statusListFirebase = $firebase(statusList);
     $scope.statusList = [];
@@ -60,7 +59,7 @@ angular.module('astatusApp')
 
       PubNub.ngPublish({
         channel: theChannel,
-        message: {"text": $scope.radioTextSizeModel + $scope.radioTextAlignModel + $scope.newStatus, "from": "astatus"}
+        message: {"text": $scope.radioTextSizeModel + $scope.radioTextAlignModel + $scope.newStatus}
       });
 
       estimatedServerTimeMs = new Date().getTime() + offsetDate;
@@ -71,5 +70,13 @@ angular.module('astatusApp')
 
     $scope.changeView = function () {
       $scope.$apply( $location.path( 'water' ) );
+    }
+
+    $scope.printImage = function (imageName) {
+      
+      PubNub.ngPublish({
+        channel: theChannel,
+        message: {"text": imageName}
+      });
     }
   });

@@ -340,3 +340,19 @@ body {
   80%   { opacity: 1; top:200%; left:60%; }
   100% { opacity: 0; top:-100%; left:60%}
 }
+
+ng-color-picker ul {
+    padding: 0;
+    margin: 0;
+}
+
+ng-color-picker li {
+    width:20px;
+    height:20px;
+    box-sizing:border-box;
+    display:inline-block;
+}
+
+ng-color-picker li.selected {
+    border: 1px solid #333;
+}

@@ -2,6 +2,7 @@
   <ul class="nav nav-pills pull-right">
     <li class="active"><a ng-href="">Read</a></li>
     <!-- <li><a ng-href="/#/water">Listen</a></li> -->
+    <li><a ng-href="/#/lightme">Light me</a></li>
   </ul>
   <h3 class="text-muted">A status</h3>
 </div>
@@ -9,20 +10,47 @@
 <div class="body">
   <div class="add-status-warapper">
 
+    <p>What do you feel now?</p>
+<!--     <div class="panel panel-default">
+      <div class="panel-body">
+
+        <p>Text setting (for thermal printer)</p>
+
+        <div class="btn-group">
+          <label class="btn btn-primary" ng-model="radioTextSizeModel" btn-radio="'L'">Large</label>
+          <label class="btn btn-primary" ng-model="radioTextSizeModel" btn-radio="'M'">Normal</label>
+          <label class="btn btn-primary" ng-model="radioTextSizeModel" btn-radio="'S'">Small</label>
+        </div>
+        <div class="btn-group">
+          <label class="btn btn-primary" ng-model="radioTextAlignModel" btn-radio="'L'">Left</label>
+          <label class="btn btn-primary" ng-model="radioTextAlignModel" btn-radio="'C'">Middle</label>
+          <label class="btn btn-primary" ng-model="radioTextAlignModel" btn-radio="'R'">Right</label>
+        </div>
+      </div>
+    </div> -->
+    <div class="row">
+      <div class="col-xs-6 col-md-3">
+        <a href="" class="thumbnail" ng-click="printImage('/img1')">
+          <img data-src="holder.js/100%x180" alt="...">
+        </a>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="" class="thumbnail" ng-click="printImage('/img2')">
+          <img data-src="holder.js/100%x180" alt="...">
+        </a>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="" class="thumbnail" ng-click="printImage('/img3')">
+          <img data-src="holder.js/100%x180" alt="...">
+        </a>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="" class="thumbnail" ng-click="printImage('/img4')">
+          <img data-src="holder.js/100%x180" alt="...">
+        </a>
+      </div>
+    </div>
     <form name="aform" ng-submit="addValue()">
-      <p>What do you feel now?</p>
-      <div class="btn-group">
-        <label class="btn btn-primary" ng-model="radioTextSizeModel" btn-radio="'L'">Large</label>
-        <label class="btn btn-primary" ng-model="radioTextSizeModel" btn-radio="'M'">Normal</label>
-        <label class="btn btn-primary" ng-model="radioTextSizeModel" btn-radio="'S'">Small</label>
-      </div>
-      <div class="btn-group">
-        <label class="btn btn-primary" ng-model="radioTextAlignModel" btn-radio="'L'">Left</label>
-        <label class="btn btn-primary" ng-model="radioTextAlignModel" btn-radio="'M'">Middle</label>
-        <label class="btn btn-primary" ng-model="radioTextAlignModel" btn-radio="'R'">Right</label>
-      </div>
-      </br>
-      </br>
       <div class="input-group">
         <input type="text" name="text" class="form-control" id="new-text" placeholder="release off" ng-model="newStatus" ng-maxlength="140" required ng-trim="true" ng-class="aform.text.$error.maxlength ? 'alert alert-danger' : ''"></input>
         <span class="input-group-btn">
