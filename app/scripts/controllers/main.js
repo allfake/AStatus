@@ -34,7 +34,9 @@ angular.module('astatusApp')
       if (!loadFinish) {
         $scope.statusList = [];
         _.each(snap.val(), function (val) {
-          $scope.statusList.unshift(val);
+          if (val.text != undefined) {
+            $scope.statusList.unshift(val);
+          }
         });
 
         if (snap.numChildren() >= $scope.statusList.length) {
@@ -46,7 +48,7 @@ angular.module('astatusApp')
     });
 
     statusList.on("child_added", function (snap) {      
-      if (loadFinish) {
+      if (loadFinish && !!snap.val().text) {
         $scope.statusList.unshift(snap.val());
         $scope.slideText.push({ text: snap.val().text });
       }

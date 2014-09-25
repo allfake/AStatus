@@ -10,10 +10,10 @@
 <div class="body" ng-hide="isLoadding">
 
   <p>
-    Say my color (HEX:{{selected}})
+    Say my color (HEX:{{color.selected}})
   </p>
   
-  <div style="background-color:{{selected}}; width: 100px; height: 100px;"></div>
+  <div style="background-color:{{color.selected}}; width: 100px; height: 100px; border: 1px solid gray;"></div>
   <br/>
-  <ng-color-picker selected="selected"></ng-color-picker>
+  <color-picker selected="color.selected" colors="mycolor.colors"></color-picker>
 </div>

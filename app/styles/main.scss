@@ -341,18 +341,18 @@ body {
   100% { opacity: 0; top:-100%; left:60%}
 }
 
-ng-color-picker ul {
+color-picker ul {
     padding: 0;
     margin: 0;
 }
 
-ng-color-picker li {
+color-picker li {
     width:20px;
     height:20px;
     box-sizing:border-box;
     display:inline-block;
 }
 
-ng-color-picker li.selected {
+color-picker li.selected {
     border: 1px solid #333;
 }

@@ -9,8 +9,7 @@ angular.module('astatusApp', [
   'wu.masonry',
   'firebase',
   'pubnub.angular.service',
-  'ui.bootstrap',
-  'ngColorPicker'
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider) {
     $routeProvider
