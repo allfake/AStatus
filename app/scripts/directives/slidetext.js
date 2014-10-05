@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('astatusApp')
-  .directive('slideText', function ($timeout) {
+  .directive('slideText', ['$timeout', function ($timeout) {
     return {
       template: '<div class="slide-text {{positionClass}}" ng-style="positionTop"><p>{{aText}}</p></div>',
       restrict: 'AE',
@@ -18,4 +18,4 @@ angular.module('astatusApp')
         });
       }
     };
-  });
+  }]);

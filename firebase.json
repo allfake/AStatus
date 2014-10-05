@@ -1,6 +1,6 @@
 {
   "firebase": "radiant-fire-8395",
-  "public": "dist",
+  "public": "app",
   "ignore": [
     "firebase.json",
     "**/.*",

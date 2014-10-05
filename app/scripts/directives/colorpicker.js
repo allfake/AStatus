@@ -7,14 +7,14 @@
  * # colorPicker
  */
 angular.module('astatusApp')
-  .directive('colorPicker', function () {
+  .directive('colorPicker', [function () {
     return {
         scope: {
             selected: '=',
             customizedColors: '=colors'
         },
         restrict: 'AE',
-        template: '<ul><li ng-repeat="color in colors" ng-class="{selected: (color===selected)}" ng-click="pick(color)" style="background-color:{{color}};"></li></ul>',
+        template: '<div><div class="col-md-2 col-xs-2" ng-repeat="color in colors" ng-class="{selected: (color===selected)}" ng-click="pick(color)"><div style="background-color:{{color}};"></div></div></div>',
         link: function (scope, element, attr) {
             var defaultColors =  [
                 '#7bd148',
@@ -39,4 +39,4 @@ angular.module('astatusApp')
 
         }
     };
-  });
+  }]);

@@ -19,18 +19,11 @@ angular.module('astatusApp')
     $scope.mycolor = {};
     $scope.mycolor.colors = 
     [
-        '#7bd148',
-        '#5484ed',
-        '#a4bdfc',
-        '#46d6db',
-        '#7ae7bf',
-        '#51b749',
-        '#fbd75b',
-        '#ffb878',
-        '#ff887c',
-        '#dc2127',
-        '#dbadff',
-        '#ffffff',
+        '#39B100',
+        '#326BFF',
+        '#FF2C56',
+        '#FFCC00',
+        '#64009C',
         '#000000'
       ];
     
@@ -57,15 +50,16 @@ angular.module('astatusApp')
       });
     });
 
-    $scope.$watch("color.selected", function (val) {
-      if (!$scope.isLoadding) {
+    $scope.$watch("color.selected", function (val, oldVal) {
+      if (!$scope.isLoadding && val != oldVal) {
         var index = lightmeFirebase.$getIndex(0);
         lightmeFirebase[index].color = val;
         lightmeFirebase.$save();
 
+        var subSharp = val.substring(1, val.length);
         PubNub.ngPublish({
           channel: theChannel,
-          message: {"text": val}
+          message: {"text": subSharp}
         });
 
       }

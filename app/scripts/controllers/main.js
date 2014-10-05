@@ -74,6 +74,14 @@ angular.module('astatusApp')
       $scope.$apply( $location.path( 'water' ) );
     }
 
+    $scope.printText = function (text) {
+      
+      PubNub.ngPublish({
+        channel: theChannel,
+        message: {"text": "LL" + text}
+      });
+    }
+
     $scope.printImage = function (imageName) {
       
       PubNub.ngPublish({
