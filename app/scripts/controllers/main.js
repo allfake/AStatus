@@ -16,6 +16,7 @@ angular.module('astatusApp')
     $scope.statusListFirebase = $firebase(statusList);
     $scope.statusList = [];
     $scope.slideText = [];
+    $scope.checkingStatus = true;
 
     if (!$rootScope.initialized) {
       // Initialize the PubNub service
@@ -24,7 +25,31 @@ angular.module('astatusApp')
         publish_key: 'demo',
       });
       $rootScope.initialized = true;
+
     }
+
+    PubNub.ngSubscribe({ channel: theChannel })
+    PubNub.ngHereNow({
+      channel: theChannel,
+      state: true,
+      uuid: false
+    });
+
+    $rootScope.$on(PubNub.ngPrsEv(theChannel), function(event, payload) {
+
+      $scope.onlines = PubNub.ngPresenceData(theChannel);
+      $scope.checkingStatus = false;
+
+      $scope.isOnline = false;
+      _.each($scope.onlines, function(value, key, list){
+        
+        if (value && value.name && value.name == 'thermal_printer') {
+          $scope.isOnline = true;
+        }
+      
+      });
+
+    })
 
     serverTimeOffset.on("value", function(snap) {
       offsetDate = snap.val();

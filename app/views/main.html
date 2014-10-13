@@ -8,11 +8,23 @@
 </div>
 
 <div class="body">
+
+  <div class="alert alert-info" ng-show="checkingStatus" role="alert">
+    Checking Thermal printer status 
+  </div>
+
+
+  <div class="alert alert-success" ng-show="!checkingStatus && isOnline" role="alert">
+    Thermal printer online
+  </div>
+
+  <div class="alert alert-danger" ng-show="!checkingStatus && !isOnline" role="alert">
+    Thermal printer offline
+  </div>
+
   <div class="add-status-warapper">
 
     <p>What do you feel now?</p>
-  
-
 
     <div class="panel panel-default">
       <div class="panel-body">
