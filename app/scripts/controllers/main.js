@@ -23,6 +23,7 @@ angular.module('astatusApp')
       PubNub.init({
         subscribe_key: 'demo',
         publish_key: 'demo',
+        ssl: true,
       });
       $rootScope.initialized = true;
 
